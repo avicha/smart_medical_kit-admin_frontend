@@ -6,7 +6,7 @@
 
 <template>
 <div id="root">
-    <login-form :redirect-uri=redirect_uri></login-form>
+    <login-form :redirect-uri=redirectUri></login-form>
 </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
     name: 'login',
     data() {
         return {
-            redirect_uri: qs.query('redirect_uri', '/')
+            redirectUri: qs.query('redirect_uri', '/')
         }
     },
     components: {
