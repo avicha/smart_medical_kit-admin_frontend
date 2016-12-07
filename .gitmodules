@@ -1,0 +1,3 @@
+[submodule "static/libs"]
+	path = static/libs
+	url = git@github.com:avicha/frontend_libs.git
