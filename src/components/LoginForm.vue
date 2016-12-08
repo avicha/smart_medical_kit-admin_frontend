@@ -27,7 +27,6 @@
 import AdminModel from '../api/admin'
 export default {
     name: 'LoginForm',
-    props: ['redirect-uri'],
     data() {
         return {
             admin: new AdminModel({
@@ -38,12 +37,11 @@ export default {
     },
     methods: {
         login() {
-            this.admin.login().then(json => {
-                if (json.errcode) {
-                    alert(json.errmsg)
-                } else {
-                    localStorage.setItem('token', json.result.token)
-                    window.location.href = this.redirectUri;
+            this.$store.dispatch('admin_login', this.admin).then(json => {
+                if (!json.errcode) {
+                    this.$router.push({
+                        path: this.$route.query.redirect_uri || '/'
+                    })
                 }
             })
         }

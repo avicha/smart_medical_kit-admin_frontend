@@ -5,14 +5,36 @@
             <a class="navbar-brand" href="/">智能药盒</a>
         </div>
         <div class="collapse navbar-collapse">
-            <p class="navbar-text navbar-right">{{username}} <a href="/admin/logout" class="navbar-link">注销</a></p>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <p class="navbar-text">{{username}}</p>
+                </li>
+                <li><a href="#" @click="logout">注销</a></li>
+            </ul>
         </div>
     </div>
 </nav>
 </template>
 <script>
+import {
+    mapState
+} from 'vuex'
 export default {
     name: 'navbar',
-    props: ['username']
+    computed: {...mapState({
+            username: state => state.admin.username
+        })
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch('admin_logout', this.$store.state.admin).then(json => {
+                if (!json.errcode) {
+                    this.$router.push({
+                        name: 'admin_login'
+                    })
+                }
+            })
+        }
+    }
 }
 </script>

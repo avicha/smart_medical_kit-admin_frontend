@@ -21,7 +21,6 @@
 </template>
 <script>
 export default {
-    name: 'menu-list',
-    props: ['current-url']
+    name: 'menu-list'
 }
 </script>

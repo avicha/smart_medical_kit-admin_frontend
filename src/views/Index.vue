@@ -2,7 +2,7 @@
 <div id="root">
     <Navbar />
     <div class="row-flow">
-        <MenuList :current-url="currentUrl"></MenuList>
+        <MenuList></MenuList>
     </div>
 </div>
 </template>
@@ -12,11 +12,6 @@ import Navbar from '../components/Navbar'
 import MenuList from '../components/MenuList'
 export default {
     name: 'index',
-    data() {
-        return {
-            currentUrl: this.$route.path
-        }
-    },
     components: {
         Navbar,
         MenuList
