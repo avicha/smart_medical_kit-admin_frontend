@@ -2,18 +2,29 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from './store'
-import * as types from './store/mutation_types'
+import store from 'store'
+import * as types from 'store/mutation_types'
 Vue.use(VueRouter)
-const Index = resolve => require(['./views/Index'], resolve)
-const AdminLogin = resolve => require(['./views/admin/Login'], resolve)
+const Index = resolve => require(['views/Index'], resolve)
+const AdminLogin = resolve => require(['views/admin/Login'], resolve)
+const UserList = resolve => require(['views/user/List'], resolve)
+const UserCreate = resolve => require(['views/user/Create'], resolve)
 const routes = [{
 	name: 'admin_login',
 	path: '/admin/login',
 	component: AdminLogin
 }, {
+	name: 'index',
 	path: '/',
 	component: Index
+}, {
+	name: 'user_list',
+	path: '/user/list',
+	component: UserList
+}, {
+	name: 'user_create',
+	path: '/user/create',
+	component: UserCreate
 }, {
 	path: '*',
 	component: Index

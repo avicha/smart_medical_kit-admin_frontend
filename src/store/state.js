@@ -1,4 +1,4 @@
-import AdminModel from '../api/admin'
+import AdminModel from 'api/admin'
 export default {
 	admin: new AdminModel({
 		username: '',

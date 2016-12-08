@@ -24,9 +24,9 @@
 </div>
 </template>
 <script>
-import AdminModel from '../api/admin'
+import AdminModel from 'api/admin'
 export default {
-    name: 'LoginForm',
+    name: 'login-form',
     data() {
         return {
             admin: new AdminModel({

@@ -1,5 +1,5 @@
 import * as types from './mutation_types'
-import AdminModel from '../api/admin'
+import AdminModel from 'api/admin'
 export function admin_login({
 	commit
 }, admin) {

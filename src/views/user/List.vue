@@ -2,9 +2,12 @@
 <div id="root">
     <Navbar />
     <div class="main">
-        <div class="row-flow">
+        <div class="row row-flow">
             <div class="col-xs-2 nav-list">
                 <MenuList></MenuList>
+            </div>
+            <div class="col-xs-10 nav-list">
+                <UserList></UserList>
             </div>
         </div>
     </div>
@@ -14,15 +17,15 @@
 <script>
 import Navbar from 'components/Navbar'
 import MenuList from 'components/MenuList'
+import UserList from 'components/UserList'
 export default {
-    name: 'index',
+    name: 'user-list',
     components: {
         Navbar,
-        MenuList
+        MenuList,
+        UserList
     }
 }
 </script>
 
-<style>
-@import "../assets/scss/global.scss"
-</style>
+<style lang="scss">@import "../../assets/scss/global.scss"</style>

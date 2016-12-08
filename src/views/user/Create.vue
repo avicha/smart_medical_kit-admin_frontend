@@ -15,7 +15,7 @@
 import Navbar from 'components/Navbar'
 import MenuList from 'components/MenuList'
 export default {
-    name: 'index',
+    name: 'user-create',
     components: {
         Navbar,
         MenuList
@@ -24,5 +24,5 @@ export default {
 </script>
 
 <style>
-@import "../assets/scss/global.scss"
+@import "../../assets/scss/global.scss"
 </style>
