@@ -2,9 +2,14 @@
 <div id="root">
     <Navbar />
     <div class="main">
-        <div class="row-flow">
+        <div class="row row-flow">
             <div class="col-xs-2 nav-list">
-                <MenuList></MenuList>
+                <MenuList />
+            </div>
+            <div class="col-xs-10 nav-list">
+                <div class="container">
+                    <UserCreateForm />
+                </div>
             </div>
         </div>
     </div>
@@ -14,11 +19,13 @@
 <script>
 import Navbar from 'components/Navbar'
 import MenuList from 'components/MenuList'
+import UserCreateForm from 'components/UserCreateForm'
 export default {
-    name: 'user-create',
+    name: 'UserCreatePage',
     components: {
         Navbar,
-        MenuList
+        MenuList,
+        UserCreateForm
     }
 }
 </script>

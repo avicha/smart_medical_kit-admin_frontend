@@ -4,10 +4,11 @@
     <div class="main">
         <div class="row row-flow">
             <div class="col-xs-2 nav-list">
-                <MenuList></MenuList>
+                <MenuList />
             </div>
             <div class="col-xs-10 nav-list">
-                <UserList></UserList>
+                <UserListTable />
+                <div id="pagination-container"></div>
             </div>
         </div>
     </div>
@@ -17,13 +18,54 @@
 <script>
 import Navbar from 'components/Navbar'
 import MenuList from 'components/MenuList'
-import UserList from 'components/UserList'
+import UserListTable from 'components/UserListTable'
+import * as types from 'store/mutation_types'
+import $ from 'jquery'
 export default {
-    name: 'user-list',
+    name: 'UserListPage',
     components: {
         Navbar,
         MenuList,
-        UserList
+        UserListTable
+    },
+    mounted() {
+        let filter = {
+            page_number: 1,
+            page_size: 1
+        }
+        let totalNumber = 0
+        let token = this.$store.state.admin.token
+        this.$store.dispatch('user_list', {
+            token: token,
+            ...filter
+        }).then(json => {
+            if (!json.errcode) {
+                totalNumber = json.total_count
+                $('#pagination-container').pagination({
+                    dataSource: '/api/user/list',
+                    locator: 'result',
+                    totalNumber: totalNumber,
+                    pageNumber: filter.page_number,
+                    pageSize: filter.page_size,
+                    pageRange: 2,
+                    triggerPagingOnInit: false,
+                    alias: {
+                        pageNumber: 'page_number',
+                        pageSize: 'page_size'
+                    },
+                    ajax: {
+                        data: {
+                            token: token
+                        }
+                    },
+                    callback: (user_list, pagination) => {
+                        this.$store.commit(types.RECEIVE_USER_LIST, {
+                            user_list
+                        })
+                    }
+                })
+            }
+        })
     }
 }
 </script>

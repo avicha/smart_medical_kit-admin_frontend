@@ -5,7 +5,7 @@ class AdminModel extends BaseModel {
 		super(props);
 	}
 	login() {
-		return fetch(this.urlPrefix + '/' + this.model_name + '/login', {
+		return fetch(this.api_prefix + '/' + this.model_name + '/login', {
 			method: 'post',
 			headers: new Headers({
 				Accept: 'application/json',
@@ -19,7 +19,7 @@ class AdminModel extends BaseModel {
 		}).then(res => res.json());
 	}
 	logout() {
-		return fetch(this.urlPrefix + '/' + this.model_name + '/logout?token=' + this.token, {
+		return fetch(this.api_prefix + '/' + this.model_name + '/logout?token=' + this.token, {
 			method: 'get',
 			headers: new Headers({
 				Accept: 'application/json',
@@ -28,7 +28,7 @@ class AdminModel extends BaseModel {
 		}).then(res => res.json());
 	}
 	static current(token) {
-		return fetch(this.urlPrefix + '/' + this.model_name + '/current?token=' + (token || ''), {
+		return fetch(this.api_prefix + '/' + this.model_name + '/current?token=' + (token || ''), {
 			method: 'get',
 			headers: new Headers({
 				Accept: 'application/json'

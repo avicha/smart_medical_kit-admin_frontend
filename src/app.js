@@ -2,6 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import BaseModel from 'api/base'
+BaseModel.api_prefix = (process.env.NODE_ENV == 'development' ? '/api' : '/api')
 import store from 'store'
 import * as types from 'store/mutation_types'
 Vue.use(VueRouter)
@@ -9,6 +11,7 @@ const Index = resolve => require(['views/Index'], resolve)
 const AdminLogin = resolve => require(['views/admin/Login'], resolve)
 const UserList = resolve => require(['views/user/List'], resolve)
 const UserCreate = resolve => require(['views/user/Create'], resolve)
+
 const routes = [{
 	name: 'admin_login',
 	path: '/admin/login',
@@ -51,6 +54,30 @@ router.beforeEach((to, from, next) => {
 		})
 	} else {
 		next()
+	}
+})
+Vue.filter('map_sex', function(value) {
+	switch (value) {
+		case 1:
+			return '男'
+			break;
+		case 2:
+			return '女'
+			break;
+		default:
+			return '未知'
+	}
+})
+Vue.filter('map_register_type', function(value) {
+	switch (value) {
+		case 1:
+			return '淘宝'
+			break;
+		case 2:
+			return '微店'
+			break;
+		default:
+			return '系统'
 	}
 })
 const app = new Vue({

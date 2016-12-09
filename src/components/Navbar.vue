@@ -20,7 +20,7 @@ import {
     mapState
 } from 'vuex'
 export default {
-    name: 'navbar',
+    name: 'Navbar',
     computed: {...mapState({
             username: state => state.admin.username
         })
