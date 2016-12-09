@@ -2,7 +2,7 @@
 <div id="root">
     <Navbar />
     <div class="main">
-        <div class="row-flow">
+        <div class="row row-flow">
             <div class="col-xs-2 nav-list">
                 <MenuList></MenuList>
             </div>
