@@ -70,12 +70,6 @@ Vue.filter('map_sex', function(value) {
 })
 Vue.filter('map_register_type', function(value) {
 	switch (value) {
-		case 1:
-			return '淘宝'
-			break;
-		case 2:
-			return '微店'
-			break;
 		default:
 			return '系统'
 	}

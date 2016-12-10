@@ -10,9 +10,7 @@ const actions = {
 	}, filter) {
 		return UserModel.list(filter).then(json => {
 			if (json.errcode) {
-				commit(types.RECEIVE_ERROR, {
-					error: json.errmsg
-				})
+				commit(types.RECEIVE_ERROR, json.errcode, json.errmsg)
 			} else {
 				commit(types.RECEIVE_USER_LIST, {
 					user_list: json.result
@@ -27,9 +25,7 @@ const actions = {
 		let user_model = new UserModel(user)
 		return user_model.create().then(json => {
 			if (json.errcode) {
-				commit(types.RECEIVE_ERROR, {
-					error: json.errmsg
-				})
+				commit(types.RECEIVE_ERROR, json.errcode, json.errmsg)
 			} else {
 
 			}
