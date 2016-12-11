@@ -54,35 +54,40 @@
 </form>
 </template> 
 <script>
-    export default {
-        name: 'UserCreateForm',
-        data() {
-            return {
-                user: {
-                    phone_number: '',
-                    nick: '',
-                    sex: '0',
-                    avatar: null,
-                    register_type: '0',
-                    token: this.$store.state.admin.token
-                }
+import {
+    mapState
+} from 'vuex'
+export default {
+    name: 'UserCreateForm',
+    data() {
+        return {
+            user: {
+                phone_number: '',
+                nick: '',
+                sex: '0',
+                avatar: null,
+                register_type: '0',
             }
-        },
-        props: [],
-        methods: {
-            create_user() {
-                if (/^\d{11}$/.test(this.user.phone_number)) {
-                    this.$store.dispatch('user_create', this.user).then(json => {
-                        if (!json.errcode) {
-                            this.$router.push({
-                                name: 'user_list'
-                            })
-                        }
-                    })
-                } else {
-                    alert('请输入11位的手机号码');
-                }
+        }
+    },
+    computed: {...mapState({
+            token: state => state.admin.token
+        })
+    },
+    methods: {
+        create_user() {
+            if (/^\d{11}$/.test(this.user.phone_number)) {
+                this.$store.dispatch('user_create', {user: this.user, token: this.token}).then(json => {
+                    if (!json.errcode) {
+                        this.$router.push({
+                            name: 'user_list'
+                        })
+                    }
+                })
+            } else {
+                alert('请输入11位的手机号码');
             }
         }
     }
+}
 </script>

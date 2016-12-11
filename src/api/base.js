@@ -40,8 +40,15 @@ class BaseModel {
 		}).then(res => res.json());
 	}
 	get() {
-		let id = this.getId();
-		return fetch(this.api_prefix + '/' + this.model_name + '/get?' + this.model_name + '_id=' + id, {
+		let qs = [];
+		let query = {
+			[this.model_name + '_id']: this.getId()
+		}
+		if (this.token) {
+			query.token = this.token;
+		}
+		Object.keys(query).forEach(key => qs.push(key + '=' + query[key]));
+		return fetch(this.api_prefix + '/' + this.model_name + '/get?' + qs.join('&'), {
 			method: 'get',
 			headers: new Headers({
 				Accept: 'application/json',
@@ -82,8 +89,15 @@ class BaseModel {
 		}
 	}
 	delete() {
-		let id = this.getId();
-		return fetch(this.api_prefix + '/' + this.model_name + '/delete?' + this.model_name + '_id=' + id, {
+		let qs = [];
+		let query = {
+			[this.model_name + '_id']: this.getId()
+		}
+		if (this.token) {
+			query.token = this.token;
+		}
+		Object.keys(query).forEach(key => qs.push(key + '=' + query[key]));
+		return fetch(this.api_prefix + '/' + this.model_name + '/delete?' + qs.join('&'), {
 			method: 'get',
 			headers: {
 				Accept: 'application/json',

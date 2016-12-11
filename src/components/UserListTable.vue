@@ -28,7 +28,10 @@
             <td>{{u.nick}}</td>
             <td>{{u.register_type|map_register_type}}</td>
             <td>{{u.created_at}}</td>
-            <td></td>
+            <td>
+                <button class="btn btn-primary">更新</button> 
+                <button class="btn btn-danger" @click="delete_user(u)">删除</button>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -41,7 +44,19 @@ export default {
     name: 'UserListTable',
     computed: {...mapState({
             users: state => state.user.list,
+            token: state => state.admin.token
         })
     },
+    methods:{
+        delete_user(user){
+            if(window.confirm('是否确定删除该客户信息？')){
+                this.$store.dispatch('user_delete', {user, token: this.token}).then(json => {
+                    if (!json.errcode) {
+                        alert('删除成功')
+                    }
+                })
+            }
+        }
+    }
 }
 </script>

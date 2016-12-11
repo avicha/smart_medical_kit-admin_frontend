@@ -7,27 +7,56 @@ const getters = {}
 const actions = {
 	user_list({
 		commit
-	}, filter) {
-		return UserModel.list(filter).then(json => {
+	}, {
+		filter,
+		token
+	}) {
+		return UserModel.list({
+			token,
+			...filter
+		}).then(json => {
 			if (json.errcode) {
-				commit(types.RECEIVE_ERROR, json.errcode, json.errmsg)
+				commit(types.RECEIVE_ERROR, json)
 			} else {
-				commit(types.RECEIVE_USER_LIST, {
-					user_list: json.result
-				})
+				commit(types.RECEIVE_USER_LIST, json)
 			}
 			return json
 		})
 	},
 	user_create({
 		commit
-	}, user) {
-		let user_model = new UserModel(user)
+	}, {
+		user,
+		token
+	}) {
+		let user_model = new UserModel({
+			token,
+			...user
+		})
 		return user_model.create().then(json => {
 			if (json.errcode) {
-				commit(types.RECEIVE_ERROR, json.errcode, json.errmsg)
+				commit(types.RECEIVE_ERROR, json)
 			} else {
 
+			}
+			return json
+		})
+	},
+	user_delete({
+		commit
+	}, {
+		user,
+		token
+	}) {
+		let user_model = new UserModel({
+			token,
+			...user
+		})
+		return user_model.delete().then(json => {
+			if (json.errcode) {
+				commit(types.RECEIVE_ERROR, json)
+			} else {
+				commit(types.USER_DELETE_SUCCESS, user)
 			}
 			return json
 		})
@@ -35,9 +64,15 @@ const actions = {
 }
 const mutations = {
 	[types.RECEIVE_USER_LIST](state, {
-		user_list
+		result
 	}) {
-		state.list = user_list
+		state.list = result
+	},
+	[types.USER_DELETE_SUCCESS](state, user) {
+		let index = state.list.indexOf(user)
+		if (~index) {
+			state.list.splice(index, 1)
+		}
 	}
 }
 export default {

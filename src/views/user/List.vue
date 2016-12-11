@@ -37,7 +37,7 @@ export default {
         let token = this.$store.state.admin.token
         this.$store.dispatch('user_list', {
             token: token,
-            ...filter
+            filter,
         }).then(json => {
             if (!json.errcode) {
                 totalNumber = json.total_count
@@ -58,10 +58,8 @@ export default {
                             token: token
                         }
                     },
-                    callback: (user_list, pagination) => {
-                        this.$store.commit(types.RECEIVE_USER_LIST, {
-                            user_list
-                        })
+                    callback: (result, pagination) => {
+                        this.$store.commit(types.RECEIVE_USER_LIST, {result})
                     }
                 })
             }

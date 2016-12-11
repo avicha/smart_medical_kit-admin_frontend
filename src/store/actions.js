@@ -5,11 +5,9 @@ export function admin_login({
 }, admin) {
 	return admin.login().then(json => {
 		if (json.errcode) {
-			commit(types.RECEIVE_ERROR, json.errcode, json.errmsg)
+			commit(types.RECEIVE_ERROR, json)
 		} else {
-			commit(types.LOGIN_SUCCESS, {
-				token: json.result.token
-			})
+			commit(types.LOGIN_SUCCESS, json)
 		}
 		return json
 	})
@@ -19,9 +17,12 @@ export function admin_current({
 }, token) {
 	return AdminModel.current(token).then(json => {
 		if (json.errcode || !json.result) {
-			commit(types.RECEIVE_ERROR, json.errcode, json.errmsg || '你还未登录')
+			commit(types.RECEIVE_ERROR, {
+				errcode: json.errcode,
+				errmsg: json.errmsg || '你还未登录'
+			})
 		} else {
-			commit(types.LOGIN_CURRENT, json.result)
+			commit(types.LOGIN_CURRENT, json)
 		}
 		return json
 	})
@@ -32,7 +33,7 @@ export function admin_logout({
 }, admin) {
 	return admin.logout().then(json => {
 		if (json.errcode) {
-			commit(types.RECEIVE_ERROR, json.errcode, json.errmsg)
+			commit(types.RECEIVE_ERROR, json)
 		} else {
 			commit(types.LOGOUT_SUCCESS)
 		}
