@@ -12,15 +12,14 @@
 </form>
 </template>
 <script>
-import AdminModel from 'api/admin'
 export default {
     name: 'LoginForm',
     data() {
         return {
-            admin: new AdminModel({
+            admin: {
                 username: '',
                 password: ''
-            })
+            }
         }
     },
     methods: {

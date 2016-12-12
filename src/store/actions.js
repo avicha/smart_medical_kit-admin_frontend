@@ -3,7 +3,8 @@ import AdminModel from 'api/admin'
 export function admin_login({
 	commit
 }, admin) {
-	return admin.login().then(json => {
+	let admin_model = new AdminModel(admin)
+	return admin_model.login().then(json => {
 		if (json.errcode) {
 			commit(types.RECEIVE_ERROR, json)
 		} else {

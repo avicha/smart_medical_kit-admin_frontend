@@ -7,8 +7,9 @@
                 <MenuList />
             </div>
             <div class="col-xs-10 nav-list">
-                <UserListTable />
+                <UserListTable :show_update_user_modal="show_update_user_modal" />
                 <div id="pagination-container"></div>
+                <UserUpdateModal ref="user_update_modal" :hide_update_user_modal="hide_update_user_modal" />
             </div>
         </div>
     </div>
@@ -16,22 +17,37 @@
 </template>
 
 <script>
+import {
+    mapState
+} from 'vuex'
 import Navbar from 'components/Navbar'
 import MenuList from 'components/MenuList'
 import UserListTable from 'components/UserListTable'
+import UserUpdateModal from 'components/UserUpdateModal'
 import * as types from 'store/mutation_types'
 import $ from 'jquery'
+import extend from 'lodash/extend'
 export default {
     name: 'UserListPage',
     components: {
         Navbar,
         MenuList,
-        UserListTable
+        UserListTable,
+        UserUpdateModal
+    },
+    methods: {
+        show_update_user_modal(user) {
+            extend(this.$refs.user_update_modal.user, user)
+            $(this.$refs.user_update_modal.$el).modal('show')
+        },
+        hide_update_user_modal() {
+            $(this.$refs.user_update_modal.$el).modal('hide')
+        }
     },
     mounted() {
         let filter = {
             page_number: 1,
-            page_size: 1
+            page_size: 25
         }
         let totalNumber = 0
         let token = this.$store.state.admin.token
@@ -59,7 +75,9 @@ export default {
                         }
                     },
                     callback: (result, pagination) => {
-                        this.$store.commit(types.RECEIVE_USER_LIST, {result})
+                        this.$store.commit(types.RECEIVE_USER_LIST, {
+                            result
+                        })
                     }
                 })
             }

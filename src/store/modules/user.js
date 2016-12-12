@@ -1,5 +1,7 @@
 import * as types from '../mutation_types'
 import UserModel from 'api/user'
+import find from 'lodash/find'
+import extend from 'lodash/extend'
 const state = {
 	list: []
 }
@@ -60,6 +62,25 @@ const actions = {
 			}
 			return json
 		})
+	},
+	user_update({
+		commit
+	}, {
+		user,
+		token
+	}) {
+		let user_model = new UserModel({
+			token,
+			...user
+		})
+		return user_model.update().then(json => {
+			if (json.errcode) {
+				commit(types.RECEIVE_ERROR, json)
+			} else {
+				commit(types.USER_UPDATE_SUCCESS, user)
+			}
+			return json
+		})
 	}
 }
 const mutations = {
@@ -72,6 +93,14 @@ const mutations = {
 		let index = state.list.indexOf(user)
 		if (~index) {
 			state.list.splice(index, 1)
+		}
+	},
+	[types.USER_UPDATE_SUCCESS](state, user) {
+		let u = find(state.list, {
+			id: user.id
+		})
+		if (u) {
+			extend(u, user)
 		}
 	}
 }

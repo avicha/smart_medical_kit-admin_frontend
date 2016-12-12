@@ -57,7 +57,9 @@ class BaseModel {
 		}).then(res => res.json());
 	}
 	update() {
-		let id = this.getId();
+		let attributes = this.attributes;
+		attributes[this.model_name + '_id'] = this.getId();
+		delete attributes[this.idAttribute]
 		return fetch(this.api_prefix + '/' + this.model_name + '/update', {
 			method: 'post',
 			headers: new Headers({
@@ -65,7 +67,7 @@ class BaseModel {
 				'X-Requested-With': 'XMLHttpRequest',
 				'Content-Type': 'application/json; charset=UTF-8'
 			}),
-			body: JSON.stringify(this.attributes)
+			body: JSON.stringify(attributes)
 		}).then(res => res.json());
 	}
 	create() {
