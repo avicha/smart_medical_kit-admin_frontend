@@ -15,6 +15,20 @@
             </div>
         </div>
     </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#admin-manage">个人设置</a>
+                </h4>
+        </div>
+        <div id="admin-manage" class="panel-collapse">
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                    <router-link role="presentation" to="/admin/reset_password" exact tag="li"><a>重置密码</a></router-link>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 </template>
 <script>

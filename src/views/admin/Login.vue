@@ -14,7 +14,7 @@
                         </h3>
                 </div>
                 <div class="panel-body">
-                    <login-form></login-form>
+                    <AdminLoginForm />
                 </div>
             </div>
         </div>
@@ -23,11 +23,11 @@
 </template>
 
 <script>
-import LoginForm from 'components/LoginForm'
+import AdminLoginForm from 'components/AdminLoginForm'
 export default {
     name: 'AdminLoginPage',
     components: {
-        LoginForm
+        AdminLoginForm
     }
 }
 </script>

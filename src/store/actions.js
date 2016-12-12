@@ -41,3 +41,23 @@ export function admin_logout({
 		return json
 	})
 }
+
+export function admin_reset_password({
+	commit
+}, {
+	admin,
+	token
+}) {
+	let admin_model = new AdminModel({
+		token,
+		...admin
+	})
+	return admin_model.reset_password().then(json => {
+		if (json.errcode) {
+			commit(types.RECEIVE_ERROR, json)
+		} else {
+
+		}
+		return json
+	})
+}

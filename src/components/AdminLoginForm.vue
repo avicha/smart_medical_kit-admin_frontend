@@ -13,7 +13,7 @@
 </template>
 <script>
 export default {
-    name: 'LoginForm',
+    name: 'AdminLoginForm',
     data() {
         return {
             admin: {

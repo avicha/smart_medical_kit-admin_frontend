@@ -9,6 +9,7 @@ import * as types from 'store/mutation_types'
 Vue.use(VueRouter)
 const Index = resolve => require(['views/Index'], resolve)
 const AdminLogin = resolve => require(['views/admin/Login'], resolve)
+const AdminResetPassword = resolve => require(['views/admin/ResetPassword'], resolve)
 const UserList = resolve => require(['views/user/List'], resolve)
 const UserCreate = resolve => require(['views/user/Create'], resolve)
 
@@ -16,6 +17,10 @@ const routes = [{
 	name: 'admin_login',
 	path: '/admin/login',
 	component: AdminLogin
+}, {
+	name: 'admin_reset_password',
+	path: '/admin/reset_password',
+	component: AdminResetPassword
 }, {
 	name: 'index',
 	path: '/',
@@ -70,8 +75,7 @@ Vue.filter('map_sex', function(value) {
 })
 Vue.filter('map_register_type', function(value) {
 	switch (value) {
-		default:
-			return '系统'
+		default: return '系统'
 	}
 })
 const app = new Vue({
