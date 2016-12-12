@@ -12,6 +12,7 @@ const AdminLogin = resolve => require(['views/admin/Login'], resolve)
 const AdminResetPassword = resolve => require(['views/admin/ResetPassword'], resolve)
 const UserList = resolve => require(['views/user/List'], resolve)
 const UserCreate = resolve => require(['views/user/Create'], resolve)
+const UserAddressList = resolve => require(['views/user_address/List'], resolve)
 
 const routes = [{
 	name: 'admin_login',
@@ -33,6 +34,10 @@ const routes = [{
 	name: 'user_create',
 	path: '/user/create',
 	component: UserCreate
+}, {
+	name: 'user_address_list',
+	path: '/user_address/list',
+	component: UserAddressList
 }, {
 	path: '*',
 	component: Index

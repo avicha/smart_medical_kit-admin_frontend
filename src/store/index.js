@@ -5,6 +5,7 @@ import mutations from './mutations'
 import * as actions from './actions'
 import * as getters from './getters'
 import user from './modules/user'
+import user_address from './modules/user_address'
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -15,7 +16,8 @@ export default new Vuex.Store({
 	actions,
 	getters,
 	modules: {
-		user
+		user,
+		user_address
 	},
 	strict: debug,
 	plugins: []

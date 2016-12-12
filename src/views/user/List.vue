@@ -52,7 +52,7 @@ export default {
         let totalNumber = 0
         let token = this.$store.state.admin.token
         this.$store.dispatch('user_list', {
-            token: token,
+            token,
             filter,
         }).then(json => {
             if (!json.errcode) {

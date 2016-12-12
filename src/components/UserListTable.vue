@@ -31,6 +31,7 @@
             <td>
                 <button class="btn btn-primary" @click="show_update_user_modal(u)">更新</button>
                 <button class="btn btn-danger" @click="delete_user(u)">删除</button>
+                <router-link :to="{name: 'user_address_list', query: {user_id: u.id}}" class="btn" exact>收货地址</router-link>
             </td>
         </tr>
     </tbody>
