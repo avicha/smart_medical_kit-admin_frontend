@@ -96,11 +96,11 @@ const mutations = {
 		}
 	},
 	[types.USER_UPDATE_SUCCESS](state, user) {
-		let u = find(state.list, {
+		let o = find(state.list, {
 			id: user.id
 		})
-		if (u) {
-			extend(u, user)
+		if (o) {
+			extend(o, user)
 		}
 	}
 }
