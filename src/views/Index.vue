@@ -15,7 +15,7 @@
 import Navbar from 'components/Navbar'
 import MenuList from 'components/MenuList'
 export default {
-    name: 'index',
+    name: 'IndexPage',
     components: {
         Navbar,
         MenuList

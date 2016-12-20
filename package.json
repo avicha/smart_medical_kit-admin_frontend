@@ -1,7 +1,7 @@
 {
   "name": "smart_medical_kit-admin_frontend",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "智能药盒管理端前台",
   "author": "avicha <avichabc@gmail.com>",
   "private": true,
   "scripts": {
