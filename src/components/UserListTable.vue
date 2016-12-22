@@ -9,11 +9,10 @@
     <caption>客户列表</caption>
     <thead>
         <tr>
-            <th>用户名</th>
             <th>头像</th>
-            <th>性别</th>
             <th>手机号码</th>
             <th>昵称</th>
+            <th>性别</th>
             <th>注册方式</th>
             <th>注册时间</th>
             <th>操作</th>
@@ -21,11 +20,10 @@
     </thead>
     <tbody>
         <tr v-for="o in users">
-            <td>{{o.username}}</td>
             <td><img class="avatar" src="~images/default_avatar.png" /></td>
-            <td>{{o.sex|map_sex}}</td>
             <td>{{o.phone_number}}</td>
             <td>{{o.nick}}</td>
+            <td>{{o.sex|map_sex}}</td>
             <td>{{o.register_type|map_register_type}}</td>
             <td>{{o.created_at}}</td>
             <td>
