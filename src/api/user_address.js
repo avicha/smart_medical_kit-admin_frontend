@@ -8,8 +8,6 @@ class UserAddressModel extends BaseModel {
 		return fetch(this.api_prefix + '/' + this.model_name + '/set_default', {
 			method: 'post',
 			headers: new Headers({
-				Accept: 'application/json',
-				'X-Requested-With': 'XMLHttpRequest',
 				'Content-Type': 'application/json; charset=UTF-8'
 			}),
 			body: JSON.stringify({

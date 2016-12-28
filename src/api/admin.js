@@ -8,8 +8,6 @@ class AdminModel extends BaseModel {
 		return fetch(this.api_prefix + '/' + this.model_name + '/login', {
 			method: 'post',
 			headers: new Headers({
-				Accept: 'application/json',
-				'X-Requested-With': 'XMLHttpRequest',
 				'Content-Type': 'application/json; charset=UTF-8'
 			}),
 			body: JSON.stringify({
@@ -20,19 +18,13 @@ class AdminModel extends BaseModel {
 	}
 	logout() {
 		return fetch(this.api_prefix + '/' + this.model_name + '/logout?token=' + this.token, {
-			method: 'get',
-			headers: new Headers({
-				Accept: 'application/json',
-				'X-Requested-With': 'XMLHttpRequest',
-			})
+			method: 'get'
 		}).then(res => res.json());
 	}
 	reset_password() {
 		return fetch(this.api_prefix + '/' + this.model_name + '/reset_password', {
 			method: 'post',
 			headers: new Headers({
-				Accept: 'application/json',
-				'X-Requested-With': 'XMLHttpRequest',
 				'Content-Type': 'application/json; charset=UTF-8'
 			}),
 			body: JSON.stringify({
@@ -44,10 +36,7 @@ class AdminModel extends BaseModel {
 	}
 	static current(token) {
 		return fetch(this.api_prefix + '/' + this.model_name + '/current?token=' + (token || ''), {
-			method: 'get',
-			headers: new Headers({
-				Accept: 'application/json'
-			}),
+			method: 'get'
 		}).then(res => res.json());
 	}
 }
