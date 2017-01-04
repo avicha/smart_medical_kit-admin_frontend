@@ -19,13 +19,13 @@
                             <label class="col-sm-offset-1 col-sm-2 control-label">性别</label>
                             <div class="col-sm-8">
                                 <label class="radio-inline">
-                                    <input type="radio" value="0" name="sex" v-model="user.sex"/> 未知
+                                    <input type="radio" value="0" name="sex" v-model.number="user.sex"/> 未知
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" value="1" name="sex" v-model="user.sex"/> 男
+                                    <input type="radio" value="1" name="sex" v-model.number="user.sex"/> 男
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" value="2" name="sex" v-model="user.sex"/> 女
+                                    <input type="radio" value="2" name="sex" v-model.number="user.sex"/> 女
                                 </label>
                             </div>
                         </div>

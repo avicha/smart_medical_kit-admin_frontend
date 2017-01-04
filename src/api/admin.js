@@ -5,38 +5,30 @@ class AdminModel extends BaseModel {
 		super(props);
 	}
 	login() {
-		return fetch(this.api_prefix + '/' + this.model_name + '/login', {
-			method: 'post',
-			headers: new Headers({
-				'Content-Type': 'application/json; charset=UTF-8'
-			}),
-			body: JSON.stringify({
-				username: this.username,
-				password: this.password
-			})
+		return BaseModel.http.post(this.api_prefix + '/' + this.model_name + '/login', {
+			username: this.username,
+			password: this.password
 		}).then(res => res.json());
 	}
 	logout() {
-		return fetch(this.api_prefix + '/' + this.model_name + '/logout?token=' + this.token, {
-			method: 'get'
+		return BaseModel.http.get(this.api_prefix + '/' + this.model_name + '/logout', {
+			params: {
+				token: this.token || ''
+			}
 		}).then(res => res.json());
 	}
 	reset_password() {
-		return fetch(this.api_prefix + '/' + this.model_name + '/reset_password', {
-			method: 'post',
-			headers: new Headers({
-				'Content-Type': 'application/json; charset=UTF-8'
-			}),
-			body: JSON.stringify({
-				old_password: this.old_password,
-				new_password: this.new_password,
-				token: this.token
-			})
+		return BaseModel.http.post(this.api_prefix + '/' + this.model_name + '/reset_password', {
+			old_password: this.old_password,
+			new_password: this.new_password,
+			token: this.token
 		}).then(res => res.json());
 	}
 	static current(token) {
-		return fetch(this.api_prefix + '/' + this.model_name + '/current?token=' + (token || ''), {
-			method: 'get'
+		return BaseModel.http.get(this.api_prefix + '/' + this.model_name + '/current', {
+			params: {
+				token: token || ''
+			}
 		}).then(res => res.json());
 	}
 }
